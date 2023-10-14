@@ -1,0 +1,186 @@
+using System;
+using System.Linq;
+
+namespace SzoftvertesztSzamologep
+{
+    public class Osszeado
+    {
+        private string a;
+        private string b;
+
+        public Osszeado(string a, string b)
+        {
+            this.a = a;
+            this.b = b;
+        }
+
+        public string Eredmeny()
+        {
+            if (ValidE(a) && ValidE(b))
+            {
+                if (a == "0")
+                {
+                    return b;
+                }
+                else if (b == "0")
+                {
+                    return a;
+                }
+                else if (a[0] == '-' && b[0] == '-')
+                {
+                    return "-" + Osszead(a.Substring(1), b.Substring(1));
+                }
+                else if (a[0] == '-')
+                {
+                    return Kivon(b, a);
+                }
+                else if (b[0] == '-')
+                {
+                    return Kivon(a, b.Substring(1));
+                }
+                else
+                {
+                    return Osszead(a, b);
+                }
+            }
+            return "HIBA";
+        }
+
+        public bool ValidE(string s)
+        {
+            if (s.Length == 0)
+            {
+                return false;
+            }
+            else if (s.Length > 1 && !char.IsDigit(s[1]))
+            {
+                return false;
+            }
+            string substring = s.Substring(1);
+            if (substring.Any(x => !char.IsDigit(x)))
+            {
+                return false;
+            }
+            char firstChar = s[0];
+
+            if (firstChar == '-' || firstChar == '+')
+            {
+                if (s.Length == 1 || s[1] == '0')
+                {
+                    return false;
+                }
+
+                for (int i = 1; i < s.Length; i++)
+                {
+                    if (!char.IsDigit(s[i]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else if (!char.IsDigit(firstChar))
+            {
+                return false;
+            }
+            else if (s.StartsWith("-") && s[1] == '0' || s.StartsWith("+") && s[1] == '0')
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public string Osszead(string a, string b)
+        {
+            bool negA = (a[0] == '-');
+            bool negB = (b[0] == '-');
+            a = negA ? a.Substring(1) : a;
+            b = negB ? b.Substring(1) : b;
+
+            int maxhossz = Math.Max(a.Length, b.Length);
+            int maradek = 0;
+            string eredmeny = "";
+
+            for (int i = 1; i <= maxhossz; i++)
+            {
+                int aSzam = i <= a.Length ? int.Parse(a[a.Length - i].ToString()) : 0;
+                int bSzam = i <= b.Length ? int.Parse(b[b.Length - i].ToString()) : 0;
+
+                int sum = aSzam + bSzam + maradek;
+                maradek = sum / 10;
+                eredmeny = (sum % 10) + eredmeny;
+            }
+
+            if (maradek > 0)
+            {
+                eredmeny = maradek + eredmeny;
+            }
+
+            if (negA && negB)
+            {
+                return "-" + eredmeny;
+            }
+            else if (negA)
+            {
+                return Kivon(b, a);
+            }
+            else if (negB)
+            {
+                return Kivon(a, b);
+            }
+            else
+            {
+                return eredmeny.TrimStart('0') != "" ? eredmeny.TrimStart('0') : "0";
+            }
+        }
+
+        public string Kivon(string a, string b)
+        {
+            bool negA = (a[0] == '-');
+            bool negB = (b[0] == '-');
+            a = negA ? a.Substring(1) : a;
+            b = negB ? b.Substring(1) : b;
+
+            if (a == b)
+            {
+                return "0";
+            }
+
+            int maxhossz = Math.Max(a.Length, b.Length);
+            int maradek = 0;
+            string eredmeny = "";
+
+            for (int i = 1; i <= maxhossz; i++)
+            {
+                int aSzam = i <= a.Length ? int.Parse(a[a.Length - i].ToString()) : 0;
+                int bSzam = i <= b.Length ? int.Parse(b[b.Length - i].ToString()) : 0;
+
+                int kulombseg = aSzam - bSzam - maradek;
+
+                if (kulombseg < 0)
+                {
+                    kulombseg += 10;
+                    maradek = 1;
+                }
+                else
+                {
+                    maradek = 0;
+                }
+
+                eredmeny = kulombseg + eredmeny;
+            }
+
+            if (negA && negB)
+            {
+                return eredmeny.TrimStart('0') != "" ? eredmeny.TrimStart('0') : "0";
+            }
+            else if (negA)
+            {
+                return "-" + eredmeny;
+            }
+            else
+            {
+                return eredmeny.TrimStart('0') != "" ? eredmeny.TrimStart('0') : "0";
+            }
+        }
+    }
+}
