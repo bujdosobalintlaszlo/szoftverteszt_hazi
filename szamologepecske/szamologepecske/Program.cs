@@ -10,7 +10,7 @@ namespace szamologepecske
     {
         static void Main(string[] args)
         {
-            Osszeadas o = new Osszeadas("","");
+            Osszeadas o = new Osszeadas("-1000000", "1000000");
             string ki = o.Kiszamol();
             Console.WriteLine(ki);
             Console.ReadKey();

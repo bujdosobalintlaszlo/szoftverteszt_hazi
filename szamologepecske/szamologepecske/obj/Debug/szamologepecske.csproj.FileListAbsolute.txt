@@ -2,7 +2,6 @@ C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\bin\Debug\szamol
 C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\bin\Debug\szamologepecske.exe
 C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\bin\Debug\szamologepecske.pdb
 C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\obj\Debug\szamologepecske.csproj.AssemblyReference.cache
-C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\obj\Debug\szamologepecske.csproj.SuggestedBindingRedirects.cache
 C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\obj\Debug\szamologepecske.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\obj\Debug\szamologepecske.exe
 C:\Users\User\Desktop\Iskola\c#\szamologepecske\szamologepecske\obj\Debug\szamologepecske.pdb
