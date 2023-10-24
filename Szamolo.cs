@@ -100,7 +100,6 @@ namespace TeljesSzamolo
                 else if (Szamj1 < Szamj2)
                     return false;
             }
-
             return true;
         }
         private static string ActuallyGenuenlyKivonomTesomsz(string a, string b)
@@ -143,7 +142,6 @@ namespace TeljesSzamolo
                 {
                     int szam1 = i < a.Length ? a[a.Length - 1 - i] - '0' : 0;
                     int szam2 = i < b.Length ? b[b.Length - 1 - i] - '0' : 0;
-
                     int sum = szam1 + szam2 + maradek;
                     maradek = sum / 10;
                     eredmeny.Insert(0, (char)(sum % 10 + '0'));
@@ -201,11 +199,7 @@ namespace TeljesSzamolo
                 {
                     return eredmeny[0].ToString();
                 }
-                if (elsoNagyobb && tempA.StartsWith("-"))
-                {
-                    eredmeny = "-" + NullaTorol(eredmeny);
-                }
-                if (!elsoNagyobb && tempB.StartsWith("-"))
+                if (elsoNagyobb && tempA.StartsWith("-") || !elsoNagyobb && tempB.StartsWith("-"))
                 {
                     eredmeny = "-" + NullaTorol(eredmeny);
                 }
