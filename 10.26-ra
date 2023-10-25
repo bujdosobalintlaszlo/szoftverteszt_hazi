@@ -1,0 +1,33 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using NUnit.Compatibility;
+using NUnit.Framework;
+using MuhelyClassal;
+using Assert = NUnit.Framework.Assert;
+
+namespace ismetlesTeszt
+{
+    [TestFixture]
+    public class UnitTest1
+    {
+        [TestCase("Hello szia szevasz b","Hss")]
+        [TestCase("Bujdosó Bálint László b","BBL")]
+        [Test]
+        public void MonogrammTeszt(string sor,string ki)
+        {
+            Ember e = new Ember(sor);
+            string mono = e.Monogramm();
+            Assert.AreEqual(ki, mono);
+        }
+        //HF -> MUNAKKORRE TESZTESETEK!!
+        [TestCase("o","olajcsere")]
+        [TestCase("i","iroda")]
+        [TestCase("x","Hiba")]
+        public void MunakkorTeszt(string sor, string ki)
+        {
+            Ember e = new Ember(sor);
+            string mun = e.Munkakor();
+            Assert.AreEqual(ki, mono);
+        }
+    }
+}
